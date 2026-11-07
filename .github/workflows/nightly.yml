@@ -53,26 +53,14 @@ jobs:
             notifications
             jdks
 
-      - name: Ensure keystore directory exists
-        run: mkdir -p app/AndroidKeystore
-
-      - name: Decode keystore
+      - name: Build debug APK
         run: |
-          echo "${{ secrets.RELEASE_KEYSTORE }}" | base64 -d > app/AndroidKeystore/release-key.jks
-
-      - name: Build release APK
-        env:
-          KEYSTORE_FILE: AndroidKeystore/release-key.jks
-          KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-        run: |
-          ./gradlew assembleRelease --build-cache
+          ./gradlew assembleDebug --build-cache
 
       - name: Locate APK
         id: locate_apk
         run: |
-          apk_path=$(ls app/build/outputs/apk/release/*.apk | head -n 1)
+          apk_path=$(ls app/build/outputs/apk/debug/*.apk | head -n 1)
           echo "apk_path=$apk_path" >> "$GITHUB_OUTPUT"
 
       - name: Create or update nightly tag
@@ -112,8 +100,8 @@ jobs:
 
             if (!release) {
               release = await github.rest.repos.createRelease({
-                owner,
-                repo,
+                owner: owner,
+                repo: repo,
                 tag_name: tag,
                 name: releaseName,
                 draft: false,
@@ -122,8 +110,8 @@ jobs:
               });
             } else {
               release = { data: (await github.rest.repos.updateRelease({
-                owner,
-                repo,
+                owner: owner,
+                repo: repo,
                 release_id: release.data.id,
                 tag_name: tag,
                 name: releaseName,
@@ -146,4 +134,5 @@ jobs:
           asset_content_type: application/vnd.android.package-archive
           max_releases: 4
           ignore_hash: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
