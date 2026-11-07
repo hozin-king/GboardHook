@@ -18,6 +18,7 @@ enable_clipboard_entity_extraction and enable_clipboard_query_refactoring affect
 - [Português (Portuguese - Brazil)](README.pt-BR.md)
 - [한국어 (Korean)](README.ko.md)
 - [Italiano (Italian)](README.it.md)
+- [Bahasa Indonesia (Indonesian)](README.id.md)
 
 ## Building
 

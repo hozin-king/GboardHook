@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ignore_package_name_restriction">Abaikan batasan nama paket\n(Aktifkan jika kamu mengubah nama paket Gboard)</string>
+    <string name="log_switch">Aktifkan log debug tambahan</string>
+    <string name="clipboard_capacity_hint">Kapasitas clipboard, bawaan 10</string>
+    <string name="clipboard_retention_hint">Waktu simpan clipboard, bawaan 3 hari, dalam milidetik</string>
+    <string name="apply">Terapkan</string>
+    <string name="restart_requirement">Setelah diterapkan, Gboard perlu di-restart</string>
+    <string name="first_setup">Saat penyiapan pertama, HP perlu di-restart</string>
+    <string name="repo_link">https://github.com/NanashiTheNameless/GboardHook</string>
+    <string name="fork_credit">Fork modifikasi ini oleh NanashiTheNameless</string>
+    <string name="original_credit">Aslinya oleh chenyue404</string>
+</resources>
